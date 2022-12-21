@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../services/firebase";
 import { NavLink, useNavigate } from "react-router-dom";
+import Logo from "../../components/Logo/Logo";
 
 const Login = () => {
 	const navigate = useNavigate();
@@ -27,9 +28,8 @@ const Login = () => {
 		<>
 			<main>
 				<section>
+					<Logo />
 					<div>
-						<p> Prosiapp </p>
-
 						<form>
 							<div>
 								<label htmlFor="email-address">Email address</label>
