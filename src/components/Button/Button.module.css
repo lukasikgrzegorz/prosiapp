@@ -1,0 +1,15 @@
+.button{
+  font-weight: 700;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #F9B65F;
+  color: #FFFFFF;
+  border:none;
+  min-width: 100px;
+}
+
+
+.button:hover,
+.button:focus{
+  background: #FFCD02;
+}

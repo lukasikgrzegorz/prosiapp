@@ -3,6 +3,8 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../services/firebase";
 import { NavLink, useNavigate } from "react-router-dom";
 import Logo from "../../components/Logo/Logo";
+import Button from "../../components/Button/Button";
+import css from "./Login.module.css";
 
 const Login = () => {
 	const navigate = useNavigate();
@@ -30,9 +32,8 @@ const Login = () => {
 				<section>
 					<Logo />
 					<div>
-						<form>
+						<form className={css["form"]}>
 							<div>
-								<label htmlFor="email-address">Email address</label>
 								<input
 									id="email-address"
 									name="email"
@@ -44,7 +45,6 @@ const Login = () => {
 							</div>
 
 							<div>
-								<label htmlFor="password">Password</label>
 								<input
 									id="password"
 									name="password"
@@ -56,11 +56,11 @@ const Login = () => {
 							</div>
 
 							<div>
-								<button onClick={onLogin}>Login</button>
+								<Button value={"Login"} onClickHandler={onLogin} />
 							</div>
 						</form>
 
-						<p className="text-sm text-white text-center">
+						<p className={css["text-wrapper"]}>
 							No account yet? <NavLink to="/signup">Sign up</NavLink>
 						</p>
 					</div>
