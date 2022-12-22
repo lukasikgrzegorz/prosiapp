@@ -4,16 +4,21 @@ import { auth } from "../../services/firebase";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import NewItemForm from "../../components/NewItemForm/NewItemForm";
+import { setUserID, removeUserID } from "../../redux/userSlice";
+import { getUserID } from "../../redux/selectors";
 
 const Home = () => {
 	const navigate = useNavigate();
-	const [userID, setUserID] = useState();
+	const dispatch = useDispatch();
+	const userID = useSelector(getUserID);
 
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
 				const uid = user.uid;
-				setUserID(uid);
+				dispatch(setUserID(uid));
 				// ...
 			} else {
 				navigate("/login");
@@ -25,11 +30,10 @@ const Home = () => {
 		signOut(auth)
 			.then(() => {
 				navigate("/");
-				setUserID(null);
+				dispatch(removeUserID());
 				console.log("Signed out successfully");
 			})
-			.catch((error) => {
-			});
+			.catch((error) => {});
 	};
 
 	return (
@@ -40,6 +44,7 @@ const Home = () => {
 				<div>
 					<button onClick={handleLogout}>Logout</button>
 				</div>
+				<NewItemForm />
 			</nav>
 		</>
 	);
