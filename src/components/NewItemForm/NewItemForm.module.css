@@ -1,0 +1,77 @@
+.wrapper{
+  padding: 50px;
+  width: 100%;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  color: #1d1d1da0;
+}
+
+
+.wrapper input{
+  background-color: #ffffff4b;
+  color: #1d1d1da0;
+}
+
+.wrapper input:focus{
+  outline: 2px solid #1d1d1da0;
+}
+
+.wrapper input::placeholder{
+  color: #1d1d1da0;
+}
+
+.wrapper-green{
+  composes: wrapper;
+  background-color: #79FFB3;
+}
+
+.wrapper-red {
+  composes: wrapper;
+  background-color: #FF8379
+}
+
+.button-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-wrapper button{
+  font-weight: 600;
+  padding: 10px;
+  border:none;
+  min-width: 100px;
+  background-color: #ffffff4b;
+  color: #1d1d1db7;
+  cursor: pointer;
+}
+
+.button-wrapper button:disabled{
+  color: #000000;
+}
+
+.button-wrapper button:first-child {
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.button-wrapper button:last-child {
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+
+.input-wrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.input-row {
+  display: flex;
+  gap: 5px;
+}
