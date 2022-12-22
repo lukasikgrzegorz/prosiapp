@@ -45,13 +45,13 @@
   padding: 10px;
   border:none;
   min-width: 100px;
-  background-color: #ffffff4b;
-  color: #1d1d1db7;
+  background-color: #ffffff23;
+  color: #1d1d1d56;
   cursor: pointer;
 }
 
 .button-wrapper button:disabled{
-  color: #000000;
+  color: #1d1d1da0;
 }
 
 .button-wrapper button:first-child {

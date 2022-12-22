@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import NewItemForm from "../../components/NewItemForm/NewItemForm";
 import { setUserID, removeUserID } from "../../redux/userSlice";
 import { getUserID } from "../../redux/selectors";
+import { getDocs, collection } from "firebase/firestore";
+import { db } from "../../services/firebase";
 
 const Home = () => {
 	const navigate = useNavigate();
@@ -35,6 +37,17 @@ const Home = () => {
 			})
 			.catch((error) => {});
 	};
+
+	const fetchHistory = async () => {
+		await getDocs(collection(db, `${userID}`)).then((querySnapshot) => {
+			const newData = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+			console.log(newData);
+		});
+	};
+
+	useEffect(() => {
+		userID && fetchHistory();
+	});
 
 	return (
 		<>
