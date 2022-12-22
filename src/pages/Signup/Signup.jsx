@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../services/firebase";
+import Button from "../../components/Button/Button";
+import Logo from "../../components/Logo/Logo";
+import css from "./Signup.module.css";
 
 const Signup = () => {
 	const navigate = useNavigate();
@@ -28,9 +31,10 @@ const Signup = () => {
 	return (
 		<main>
 			<section>
+				<Logo />
 				<div>
 					<div>
-						<form>
+						<form className={css["form"]}>
 							<div>
 								<input
 									type="email"
@@ -53,12 +57,10 @@ const Signup = () => {
 								/>
 							</div>
 
-							<button type="submit" onClick={onSubmit}>
-								Sign up
-							</button>
+							<Button value={"Sign up"} onClickHandler={onSubmit} />
 						</form>
 
-						<p>
+						<p className={css["text-wrapper"]}>
 							Already have an account? <NavLink to="/login">Sign in</NavLink>
 						</p>
 					</div>
