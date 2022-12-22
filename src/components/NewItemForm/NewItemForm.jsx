@@ -1,11 +1,27 @@
 import { addDoc, collection } from "firebase/firestore";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { db } from "../../services/firebase";
+import getActualDate from "../../functions/getActualDate";
 
 const NewItemForm = () => {
 	const [title, setTitle] = useState();
 	const [value, setValue] = useState();
 	const [date, setDate] = useState();
+	const [isIncome, setIsIncome] = useState(true);
+	const inputDataRef = useRef();
+	const actualDate = getActualDate();
+
+	useEffect(() => {
+		setDate(actualDate);
+	}, []);
+
+	const setIncome = () => {
+		setIsIncome(true);
+	};
+
+	const setCost = () => {
+		setIsIncome(false);
+	};
 
 	const addNewItem = async () => {
 		try {
@@ -22,9 +38,19 @@ const NewItemForm = () => {
 
 	return (
 		<>
+			<div>
+				<button onClick={setIncome}>INCOME</button>
+				<button onClick={setCost}>COST</button>
+			</div>
 			<input type="text" placeholder="title" onChange={(e) => setTitle(e.target.value)} />
 			<input type="number" placeholder="value" onChange={(e) => setValue(e.target.value)} />
-			<input type="date" placeholder="date" onChange={(e) => setDate(e.target.value)} />
+			<input
+				ref={inputDataRef}
+				type="date"
+				placeholder="date"
+				defaultValue={actualDate}
+				onChange={(e) => setDate(e.target.value)}
+			/>
 			<button onClick={addNewItem}>Add</button>
 		</>
 	);
