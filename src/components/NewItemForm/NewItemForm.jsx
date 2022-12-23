@@ -3,11 +3,12 @@ import { useEffect, useRef, useState } from "react";
 import { db } from "../../services/firebase";
 import getActualDate from "../../functions/getActualDate";
 import { getUserID } from "../../redux/selectors";
+import { setLastHistory } from "../../redux/balanceSlice";
 import { useSelector } from "react-redux";
 import css from "./NewItemForm.module.css";
 import Button from "../../components/Button/Button";
 
-const NewItemForm = () => {
+const NewItemForm = ({ onClose }) => {
 	const [title, setTitle] = useState(null);
 	const [value, setValue] = useState(null);
 	const [date, setDate] = useState();
@@ -61,6 +62,7 @@ const NewItemForm = () => {
 				console.error("Error adding document: ", e);
 			} finally {
 				clearInput();
+				onClose();
 			}
 		} else {
 			console.log("Puste pola!");
@@ -69,6 +71,7 @@ const NewItemForm = () => {
 
 	return (
 		<div className={isIncome ? css["wrapper-green"] : css["wrapper-red"]}>
+			<button onClick={onClose}>x</button>
 			<div className={css["button-wrapper"]}>
 				<button onClick={setIncome} className={css["accent"]} disabled={isIncome}>
 					+ Income

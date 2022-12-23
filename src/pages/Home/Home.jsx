@@ -11,6 +11,7 @@ import { setLastHistory, clearLastHistory } from "../../redux/balanceSlice";
 import { getUserID } from "../../redux/selectors";
 import { getDocs, collection, query, where, orderBy } from "firebase/firestore";
 import { db } from "../../services/firebase";
+import Button from "../../components/Button/Button";
 
 const Home = () => {
 	const navigate = useNavigate();
@@ -18,6 +19,7 @@ const Home = () => {
 	const userID = useSelector(getUserID);
 	const userRef = collection(db, `${userID}`);
 	const dateQuery = query(userRef, orderBy("date", "desc"));
+	const [openModal, setOpenModal] = useState(false);
 
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
@@ -53,6 +55,10 @@ const Home = () => {
 		userID && fetchHistory();
 	});
 
+	const closeModal = () => {
+		setOpenModal(false);
+	};
+
 	return (
 		<>
 			<nav>
@@ -61,7 +67,13 @@ const Home = () => {
 				<div>
 					<button onClick={handleLogout}>Logout</button>
 				</div>
-				<NewItemForm />
+				<Button
+					value="+"
+					onClickHandler={() => {
+						setOpenModal(true);
+					}}
+				/>
+				{openModal && <NewItemForm onClose={closeModal} />}
 			</nav>
 		</>
 	);
