@@ -31,38 +31,40 @@ const Signup = () => {
 	return (
 		<main>
 			<section>
-				<Logo />
-				<div>
+				<div className={css["wrapper"]}>
+					<Logo />
 					<div>
-						<form className={css["form"]}>
-							<div>
-								<input
-									type="email"
-									label="Email address"
-									value={email}
-									onChange={(e) => setEmail(e.target.value)}
-									required
-									placeholder="Email address"
-								/>
-							</div>
+						<div>
+							<form className={css["form"]}>
+								<div>
+									<input
+										type="email"
+										label="Email address"
+										value={email}
+										onChange={(e) => setEmail(e.target.value)}
+										required
+										placeholder="Email address"
+									/>
+								</div>
 
-							<div>
-								<input
-									type="password"
-									label="Create password"
-									value={password}
-									onChange={(e) => setPassword(e.target.value)}
-									required
-									placeholder="Password"
-								/>
-							</div>
+								<div>
+									<input
+										type="password"
+										label="Create password"
+										value={password}
+										onChange={(e) => setPassword(e.target.value)}
+										required
+										placeholder="Password"
+									/>
+								</div>
 
-							<Button value={"Sign up"} onClickHandler={onSubmit} />
-						</form>
+								<Button value={"Sign up"} onClickHandler={onSubmit} />
+							</form>
 
-						<p className={css["text-wrapper"]}>
-							Already have an account? <NavLink to="/login">Sign in</NavLink>
-						</p>
+							<p className={css["text-wrapper"]}>
+								Already have an account? <NavLink to="/login">Sign in</NavLink>
+							</p>
+						</div>
 					</div>
 				</div>
 			</section>
