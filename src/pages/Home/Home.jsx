@@ -8,13 +8,15 @@ import { useDispatch, useSelector } from "react-redux";
 import NewItemForm from "../../components/NewItemForm/NewItemForm";
 import { setUserID, removeUserID } from "../../redux/userSlice";
 import { getUserID } from "../../redux/selectors";
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, query, where, orderBy } from "firebase/firestore";
 import { db } from "../../services/firebase";
 
 const Home = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const userID = useSelector(getUserID);
+	const userRef = collection(db, `${userID}`);
+	const q = query(userRef, orderBy("date"));
 
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
@@ -39,7 +41,7 @@ const Home = () => {
 	};
 
 	const fetchHistory = async () => {
-		await getDocs(collection(db, `${userID}`)).then((querySnapshot) => {
+		await getDocs(q).then((querySnapshot) => {
 			const newData = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
 			console.log(newData);
 		});
