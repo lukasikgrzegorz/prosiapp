@@ -54,6 +54,7 @@ const NewItemForm = () => {
 					value: value,
 					title: title,
 					date: date,
+					type: "item",
 				});
 				console.log("Document written with ID: ", docRef.id);
 			} catch (e) {
@@ -87,7 +88,7 @@ const NewItemForm = () => {
 					<input ref={inputValueRef} type="number" placeholder="Value" onChange={setActualValue} />
 					<input
 						ref={inputDateRef}
-						type="date"
+						type="datetime-local"
 						placeholder="date"
 						defaultValue={actualDate}
 						onChange={(e) => setDate(e.target.value)}
