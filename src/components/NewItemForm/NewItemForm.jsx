@@ -73,29 +73,38 @@ const NewItemForm = ({ onClose }) => {
 	};
 
 	return (
-		<div className={isIncome ? css["wrapper-green"] : css["wrapper-red"]}>
-			<button onClick={onClose}>x</button>
-			<div className={css["button-wrapper"]}>
-				<button onClick={setIncome} className={css["accent"]} disabled={isIncome}>
-					+ Income
+		<div className={css["backdrop"]}>
+			<div className={isIncome ? css["wrapper-green"] : css["wrapper-red"]}>
+				<button className={css["button-close"]} onClick={onClose}>
+					X
 				</button>
-				<button onClick={setCost} className={css["accent"]} disabled={!isIncome}>
-					- Cost
-				</button>
-			</div>
-			<div className={css["input-wrapper"]}>
-				<input
-					ref={inputTitleRef}
-					type="text"
-					placeholder="Title"
-					onChange={(e) => setTitle(e.target.value)}
-				/>
-				<div className={css["input-row"]}>
-					<input ref={inputValueRef} type="number" placeholder="Value" onChange={setActualValue} />
+				<div className={css["button-wrapper"]}>
+					<button onClick={setIncome} className={css["accent"]} disabled={isIncome}>
+						+ Income
+					</button>
+					<button onClick={setCost} className={css["accent"]} disabled={!isIncome}>
+						- Cost
+					</button>
 				</div>
-			</div>
-			<div>
-				<Button value="Add" onClickHandler={addNewItem} />
+				<div className={css["input-wrapper"]}>
+					<input
+						ref={inputTitleRef}
+						type="text"
+						placeholder="Title"
+						onChange={(e) => setTitle(e.target.value)}
+					/>
+					<div className={css["input-row"]}>
+						<input
+							ref={inputValueRef}
+							type="number"
+							placeholder="Value"
+							onChange={setActualValue}
+						/>
+					</div>
+				</div>
+				<div>
+					<Button value="Add" onClickHandler={addNewItem} />
+				</div>
 			</div>
 		</div>
 	);

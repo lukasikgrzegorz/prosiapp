@@ -73,7 +73,7 @@ const Home = () => {
 
 	return (
 		<>
-			{" "}
+			{openModal && <NewItemForm onClose={closeModal} />}
 			<button
 				className={css["button-add"]}
 				onClick={() => {
@@ -83,7 +83,7 @@ const Home = () => {
 				+
 			</button>
 			{}
-			{openModal && <NewItemForm onClose={closeModal} />}
+
 			<header className={css["header"]}>
 				<div className={css["header-container"]}>
 					<div>{userEmail}</div>

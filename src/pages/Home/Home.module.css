@@ -1,5 +1,19 @@
 .container{
+  min-width: 300px;
   max-width: 1280px;
+  padding: 0 25px;
+}
+
+@media screen and (min-width:480px) {
+  .container {
+    min-width: 400px;
+  }
+}
+
+@media screen and (min-width:768px){
+  .container {
+      min-width: 500px;
+  }
 }
 
 .header{
@@ -23,7 +37,6 @@
 .balance-wrapper{
   background-color: #FFF9E3;
   padding: 25px;
-  min-width: 500px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -49,7 +62,6 @@
 }
 
 .list{
-  min-width: 500px;
   margin-top: 15px;
   display: flex;
   flex-direction: column;
@@ -59,10 +71,12 @@
 .item{
   width: 100%;
   display: flex;
+  gap: 10px;
   justify-content: space-between;
   align-items: center;
   padding: 15px;
   border-radius: 5px;
+  flex-wrap: wrap;
 }
 
 .item-income{
