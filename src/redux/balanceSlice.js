@@ -9,6 +9,9 @@ const balanceSlice = createSlice({
 	name: "balance",
 	initialState,
 	reducers: {
+		setBalance(state, action) {
+			state.balance = action.payload;
+		},
 		setLastHistory(state, action) {
 			state.lastHistory = action.payload;
 		},
@@ -19,4 +22,4 @@ const balanceSlice = createSlice({
 });
 
 export const balanceReducer = balanceSlice.reducer;
-export const { setLastHistory, clearLastHistory } = balanceSlice.actions;
+export const { setBalance, setLastHistory, clearLastHistory } = balanceSlice.actions;

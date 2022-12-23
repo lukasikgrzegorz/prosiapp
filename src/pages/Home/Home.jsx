@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import NewItemForm from "../../components/NewItemForm/NewItemForm";
 import { setUserID, removeUserID } from "../../redux/userSlice";
-import { setLastHistory, clearLastHistory } from "../../redux/balanceSlice";
+import { setLastHistory, clearLastHistory, setBalance } from "../../redux/balanceSlice";
 import { getUserID } from "../../redux/selectors";
 import { getDocs, collection, query, where, orderBy } from "firebase/firestore";
 import { db } from "../../services/firebase";
@@ -48,6 +48,7 @@ const Home = () => {
 			const lastHistory = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
 			console.log(lastHistory);
 			dispatch(setLastHistory(lastHistory));
+			lastHistory.length > 0 && dispatch(setBalance(lastHistory[0].after));
 		});
 	};
 

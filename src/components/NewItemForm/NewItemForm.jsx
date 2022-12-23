@@ -2,7 +2,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { useEffect, useRef, useState } from "react";
 import { db } from "../../services/firebase";
 import getActualDate from "../../functions/getActualDate";
-import { getUserID } from "../../redux/selectors";
+import { getUserID, getBalance } from "../../redux/selectors";
 import { setLastHistory } from "../../redux/balanceSlice";
 import { useSelector } from "react-redux";
 import css from "./NewItemForm.module.css";
@@ -18,6 +18,7 @@ const NewItemForm = ({ onClose }) => {
 	const inputValueRef = useRef();
 	const actualDate = getActualDate();
 	const userID = useSelector(getUserID);
+	const actualBalance = useSelector(getBalance);
 
 	useEffect(() => {
 		setDate(actualDate);
@@ -49,13 +50,15 @@ const NewItemForm = ({ onClose }) => {
 	};
 
 	const addNewItem = async () => {
+		const finishValue = actualBalance + value;
 		if (value && title) {
 			try {
 				const docRef = await addDoc(collection(db, userID), {
 					value: value,
 					title: title,
 					date: date,
-					type: "item",
+					before: actualBalance,
+					after: finishValue,
 				});
 				console.log("Document written with ID: ", docRef.id);
 			} catch (e) {
@@ -89,13 +92,6 @@ const NewItemForm = ({ onClose }) => {
 				/>
 				<div className={css["input-row"]}>
 					<input ref={inputValueRef} type="number" placeholder="Value" onChange={setActualValue} />
-					<input
-						ref={inputDateRef}
-						type="datetime-local"
-						placeholder="date"
-						defaultValue={actualDate}
-						onChange={(e) => setDate(e.target.value)}
-					/>
 				</div>
 			</div>
 			<div>
