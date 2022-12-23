@@ -8,7 +8,7 @@ const Logo = () => {
 				<img className={css["image"]} src={logo} />
 			</div>
 			<h2 className={css["title"]}>
-				Prosi<span className={css["accent"]}>APP</span>
+				Prosi<span className={css["accent"]}>App</span>
 			</h2>
 		</div>
 	);
