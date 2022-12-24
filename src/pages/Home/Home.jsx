@@ -6,7 +6,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserID, removeUserID, setUserEmail, removeUserEmail } from "../../redux/userSlice";
-import { setLastHistory, clearLastHistory, setBalance } from "../../redux/balanceSlice";
+import { setLastHistory, clearBalance, setBalance } from "../../redux/balanceSlice";
 import { getUserID, getUserEmail, getLastHistory, getBalance } from "../../redux/selectors";
 import { getDocs, collection, query, where, orderBy } from "firebase/firestore";
 import { db } from "../../services/firebase";
@@ -45,6 +45,7 @@ const Home = () => {
 				navigate("/");
 				dispatch(removeUserID());
 				dispatch(removeUserEmail());
+				dispatch(clearBalance());
 				console.log("Signed out successfully");
 			})
 			.catch((error) => {});
