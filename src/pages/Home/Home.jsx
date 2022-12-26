@@ -72,14 +72,6 @@ const Home = () => {
 		fetchHistory();
 	};
 
-	fetch(
-		`https://firestore.googleapis.com/v1/projects/prosiapp-ad91e/databases/(default)/documents/Tw6ebWNuZ0TSTelycVaO0rF8yTr2`
-	)
-		.then((res) => res.json())
-		.then((res) => {
-			console.log(res.documents);
-		});
-
 	return (
 		<>
 			{openModal && <NewItemForm onClose={closeModal} />}

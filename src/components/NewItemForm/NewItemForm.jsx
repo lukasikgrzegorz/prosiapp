@@ -13,12 +13,16 @@ const NewItemForm = ({ onClose }) => {
 	const [value, setValue] = useState(null);
 	const [date, setDate] = useState();
 	const [isIncome, setIsIncome] = useState(true);
+	const [category, setCategory] = useState();
 	const inputDateRef = useRef();
 	const inputTitleRef = useRef();
 	const inputValueRef = useRef();
+	const selectCategoryRef = useRef();
 	const actualDate = getActualDate();
 	const userID = useSelector(getUserID);
 	const actualBalance = useSelector(getBalance);
+
+	const categories = [{ value: "ogólny" }, { value: "leki" }, { value: "życie" }];
 
 	useEffect(() => {
 		setDate(actualDate);
@@ -57,6 +61,7 @@ const NewItemForm = ({ onClose }) => {
 					value: value,
 					title: title,
 					date: date,
+					category: category,
 					before: actualBalance,
 					after: finishValue,
 				});
@@ -93,14 +98,16 @@ const NewItemForm = ({ onClose }) => {
 						placeholder="Title"
 						onChange={(e) => setTitle(e.target.value)}
 					/>
-					<div className={css["input-row"]}>
-						<input
-							ref={inputValueRef}
-							type="number"
-							placeholder="Value"
-							onChange={setActualValue}
-						/>
-					</div>
+					<input ref={inputValueRef} type="number" placeholder="Value" onChange={setActualValue} />
+					<select ref={inputValueRef} name="category" onChange={(e) => setCategory(e.target.value)}>
+						{categories.map((category, index) => {
+							return (
+								<option key={index} value={category.value}>
+									{category.value}
+								</option>
+							);
+						})}
+					</select>
 				</div>
 				<div>
 					<Button value="Add" onClickHandler={addNewItem} />
