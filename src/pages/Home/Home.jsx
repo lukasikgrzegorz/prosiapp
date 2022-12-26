@@ -24,6 +24,7 @@ const Home = () => {
 	const userRef = collection(db, `${userID}`);
 	const dateQuery = query(userRef, orderBy("date", "desc"));
 	const [openModal, setOpenModal] = useState(false);
+	const [modalContent, setModalContent] = useState(null);
 	const [isLoading, setIsLoadnig] = useState(false);
 	const currentBalance = useSelector(getBalance);
 
@@ -70,10 +71,12 @@ const Home = () => {
 
 	const closeModalwithBtn = () => {
 		setOpenModal(false);
+		setModalContent(null);
 		fetchHistory();
 	};
 
 	const openModalwithBtn = () => {
+		setModalContent("add");
 		setOpenModal(true);
 	};
 
@@ -81,9 +84,7 @@ const Home = () => {
 		<>
 			<OptionButton option="add" onClickHandler={openModalwithBtn} />
 			{openModal && (
-				<Modal>
-					<NewItemForm onClose={closeModalwithBtn} />
-				</Modal>
+				<Modal>{modalContent === "add" && <NewItemForm onClose={closeModalwithBtn} />}</Modal>
 			)}
 			<header className={css["header"]}>
 				<div className={css["header-container"]}>

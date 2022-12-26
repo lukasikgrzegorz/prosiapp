@@ -84,10 +84,10 @@ const NewItemForm = ({ onClose }) => {
 				<OptionButton option="close" onClickHandler={onClose} />
 				<div className={css["button-wrapper"]}>
 					<button onClick={setIncome} className={css["accent"]} disabled={isIncome}>
-						+ Income
+						Income
 					</button>
 					<button onClick={setCost} className={css["accent"]} disabled={!isIncome}>
-						- Cost
+						Cost
 					</button>
 				</div>
 				<div className={css["input-wrapper"]}>
