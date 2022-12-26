@@ -72,6 +72,14 @@ const Home = () => {
 		fetchHistory();
 	};
 
+	fetch(
+		`https://firestore.googleapis.com/v1/projects/prosiapp-ad91e/databases/(default)/documents/Tw6ebWNuZ0TSTelycVaO0rF8yTr2`
+	)
+		.then((res) => res.json())
+		.then((res) => {
+			console.log(res.documents);
+		});
+
 	return (
 		<>
 			{openModal && <NewItemForm onClose={closeModal} />}
@@ -112,7 +120,6 @@ const Home = () => {
 										<p className={css["date"]}>{item.date.slice(0, 10)}</p>
 									</div>
 									<div className={css["value"]}>{item.value.toFixed(2)}</div>
-									{/* <p>{item.date}</p> */}
 								</li>
 							);
 						})}
