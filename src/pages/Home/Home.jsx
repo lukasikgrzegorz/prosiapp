@@ -11,6 +11,7 @@ import { getUserID, getUserEmail, getLastHistory, getBalance } from "../../redux
 import { getDocs, collection, query, where, orderBy } from "firebase/firestore";
 import { db } from "../../services/firebase";
 import Button from "../../components/Button/Button";
+import OptionButton from "../../components/OptionButton/OptionButton";
 import NewItemForm from "../../components/NewItemForm/NewItemForm";
 import css from "./Home.module.css";
 
@@ -67,29 +68,29 @@ const Home = () => {
 		fetchHistory();
 	}, [userID]);
 
-	const closeModal = () => {
+	const closeModalwithBtn = () => {
 		setOpenModal(false);
 		fetchHistory();
 	};
 
+	const openModalwithBtn = () => {
+		setOpenModal(true);
+	};
+
 	return (
 		<>
-			{openModal && <NewItemForm onClose={closeModal} />}
-			<button
-				className={css["button-add"]}
-				onClick={() => {
-					setOpenModal(true);
-				}}
-			>
-				+
-			</button>
-			{}
-
+			<OptionButton option="add" onClickHandler={openModalwithBtn} />
+			{openModal && <NewItemForm onClose={closeModalwithBtn} />}
 			<header className={css["header"]}>
 				<div className={css["header-container"]}>
-					<div>{userEmail}</div>
 					<div>
-						<Button value="Logout" onClickHandler={handleLogout} />
+						<OptionButton option="categories"></OptionButton>
+					</div>
+					<div className={css["header-user"]}>
+						<div>{userEmail}</div>
+						<div>
+							<OptionButton option="logout" onClickHandler={handleLogout} />
+						</div>
 					</div>
 				</div>
 			</header>

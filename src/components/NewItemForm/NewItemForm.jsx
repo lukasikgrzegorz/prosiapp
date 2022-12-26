@@ -7,6 +7,7 @@ import { setLastHistory } from "../../redux/balanceSlice";
 import { useSelector } from "react-redux";
 import css from "./NewItemForm.module.css";
 import Button from "../../components/Button/Button";
+import OptionButton from "../OptionButton/OptionButton";
 
 const NewItemForm = ({ onClose }) => {
 	const [title, setTitle] = useState(null);
@@ -80,9 +81,7 @@ const NewItemForm = ({ onClose }) => {
 	return (
 		<div className={css["backdrop"]}>
 			<div className={isIncome ? css["wrapper-green"] : css["wrapper-red"]}>
-				<button className={css["button-close"]} onClick={onClose}>
-					X
-				</button>
+				<OptionButton option="close" onClickHandler={onClose} />
 				<div className={css["button-wrapper"]}>
 					<button onClick={setIncome} className={css["accent"]} disabled={isIncome}>
 						+ Income

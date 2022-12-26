@@ -1,0 +1,51 @@
+.button{
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background-color: #F9B65F;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.button:hover,
+.button:focus {
+  background-color: #FFCD02;
+}
+
+.button-add{
+  composes: button;
+  width: 60px;
+  height: 60px;
+  background-image: url(./images/plus.svg);
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+}
+
+.button-logout {
+  composes: button;
+  background-image: url(./images/log-out.svg);
+}
+
+.button-close {
+  composes: button;
+  background-image: url(./images/cancel.svg);
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.button-categories {
+  composes: button;
+  background-image: url(./images/list.svg);
+}
+
+.button-search {
+  composes: button;
+  background-image: url(./images/search.svg);
+}
+
