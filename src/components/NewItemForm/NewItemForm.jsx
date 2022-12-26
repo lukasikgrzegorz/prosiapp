@@ -14,7 +14,7 @@ const NewItemForm = ({ onClose }) => {
 	const [value, setValue] = useState(null);
 	const [date, setDate] = useState();
 	const [isIncome, setIsIncome] = useState(true);
-	const [category, setCategory] = useState();
+	const [category, setCategory] = useState("General");
 	const inputDateRef = useRef();
 	const inputTitleRef = useRef();
 	const inputValueRef = useRef();
@@ -98,7 +98,8 @@ const NewItemForm = ({ onClose }) => {
 						onChange={(e) => setTitle(e.target.value)}
 					/>
 					<input ref={inputValueRef} type="number" placeholder="Value" onChange={setActualValue} />
-					<select ref={inputValueRef} name="category" onChange={(e) => setCategory(e.target.value)}>
+					<select name="category" defaultValue="" onChange={(e) => setCategory(e.target.value)}>
+						<option value="General">General</option>
 						{categories.map((category, index) => {
 							return (
 								<option key={index} value={category.value}>

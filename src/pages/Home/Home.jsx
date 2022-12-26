@@ -10,8 +10,8 @@ import { setLastHistory, clearBalance, setBalance } from "../../redux/balanceSli
 import { getUserID, getUserEmail, getLastHistory, getBalance } from "../../redux/selectors";
 import { getDocs, collection, query, where, orderBy } from "firebase/firestore";
 import { db } from "../../services/firebase";
-import Button from "../../components/Button/Button";
 import OptionButton from "../../components/OptionButton/OptionButton";
+import Modal from "../../components/Modal/Modal";
 import NewItemForm from "../../components/NewItemForm/NewItemForm";
 import css from "./Home.module.css";
 
@@ -80,7 +80,11 @@ const Home = () => {
 	return (
 		<>
 			<OptionButton option="add" onClickHandler={openModalwithBtn} />
-			{openModal && <NewItemForm onClose={closeModalwithBtn} />}
+			{openModal && (
+				<Modal>
+					<NewItemForm onClose={closeModalwithBtn} />
+				</Modal>
+			)}
 			<header className={css["header"]}>
 				<div className={css["header-container"]}>
 					<div>
@@ -110,7 +114,8 @@ const Home = () => {
 								>
 									<div className={css["data-holder"]}>
 										<p className={css["title"]}>{item.title}</p>
-										<p className={css["date"]}>{item.date.slice(0, 10)}</p>
+										<p className={css["data"]}>{item.category}</p>
+										<p className={css["data"]}>{item.date.slice(0, 10)}</p>
 									</div>
 									<div className={css["value"]}>{item.value.toFixed(2)}</div>
 								</li>
