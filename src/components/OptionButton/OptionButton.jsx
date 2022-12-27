@@ -19,6 +19,9 @@ const OptionButton = ({ option, onClickHandler }) => {
 		case "search":
 			styleHandler = "button-search";
 			break;
+		case "delete":
+			styleHandler = "button-delete";
+			break;
 	}
 
 	return <button onClick={onClickHandler} className={css[styleHandler]}></button>;

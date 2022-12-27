@@ -6,13 +6,14 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserID, removeUserID, setUserEmail, removeUserEmail } from "../../redux/userSlice";
-import { setLastHistory, clearBalance, setBalance } from "../../redux/balanceSlice";
+import { setLastHistory, clearBalance, setBalance, setCategories } from "../../redux/balanceSlice";
 import { getUserID, getUserEmail, getLastHistory, getBalance } from "../../redux/selectors";
 import { getDocs, collection, query, where, orderBy } from "firebase/firestore";
 import { db } from "../../services/firebase";
 import OptionButton from "../../components/OptionButton/OptionButton";
 import Modal from "../../components/Modal/Modal";
 import NewItemForm from "../../components/NewItemForm/NewItemForm";
+import Categories from "../../components/Categories/Categories";
 import css from "./Home.module.css";
 
 const Home = () => {
@@ -22,11 +23,14 @@ const Home = () => {
 	const userEmail = useSelector(getUserEmail);
 	const lastHistory = useSelector(getLastHistory);
 	const userRef = collection(db, `${userID}`);
-	const dateQuery = query(userRef, orderBy("date", "desc"));
+	const userCategoriesRef = collection(db, `${userID}-categories`);
 	const [openModal, setOpenModal] = useState(false);
 	const [modalContent, setModalContent] = useState(null);
 	const [isLoading, setIsLoadnig] = useState(false);
 	const currentBalance = useSelector(getBalance);
+
+	const dateQuery = query(userRef, orderBy("date", "desc"));
+	const categoriesQuery = query(userCategoriesRef, orderBy("name"));
 
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
@@ -65,31 +69,52 @@ const Home = () => {
 			.finally(() => console.log("done"));
 	};
 
+	const fetchCategories = async () => {
+		await getDocs(categoriesQuery)
+			.then((querySnapshot) => {
+				const categories = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+				console.log(categories);
+				dispatch(setCategories(categories));
+			})
+			.catch((error) => console.log(error))
+			.finally(() => console.log("done"));
+	};
+
 	useEffect(() => {
 		fetchHistory();
+		fetchCategories();
 	}, [userID]);
 
 	const closeModalwithBtn = () => {
 		setOpenModal(false);
 		setModalContent(null);
 		fetchHistory();
+		fetchCategories();
 	};
 
-	const openModalwithBtn = () => {
+	const openModalAdd = () => {
 		setModalContent("add");
+		setOpenModal(true);
+	};
+
+	const openModalCategories = () => {
+		setModalContent("categories");
 		setOpenModal(true);
 	};
 
 	return (
 		<>
-			<OptionButton option="add" onClickHandler={openModalwithBtn} />
+			<OptionButton option="add" onClickHandler={openModalAdd} />
 			{openModal && (
-				<Modal>{modalContent === "add" && <NewItemForm onClose={closeModalwithBtn} />}</Modal>
+				<Modal>
+					{modalContent === "add" && <NewItemForm onClose={closeModalwithBtn} />}
+					{modalContent === "categories" && <Categories onClose={closeModalwithBtn} />}
+				</Modal>
 			)}
 			<header className={css["header"]}>
 				<div className={css["header-container"]}>
 					<div>
-						<OptionButton option="categories"></OptionButton>
+						<OptionButton option="categories" onClickHandler={openModalCategories}></OptionButton>
 					</div>
 					<div className={css["header-user"]}>
 						<div>{userEmail}</div>

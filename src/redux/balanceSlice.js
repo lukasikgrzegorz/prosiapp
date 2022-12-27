@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
 	balance: 0,
 	lastHistory: [],
+	categories: [],
 };
 
 const balanceSlice = createSlice({
@@ -21,8 +22,21 @@ const balanceSlice = createSlice({
 		clearLastHistory(state) {
 			state.lastHistory = [];
 		},
+		setCategories(state, action) {
+			state.categories = action.payload;
+		},
+		clearCategories(state) {
+			state.categories = [];
+		},
 	},
 });
 
 export const balanceReducer = balanceSlice.reducer;
-export const { setBalance, clearBalance, setLastHistory, clearLastHistory } = balanceSlice.actions;
+export const {
+	setBalance,
+	clearBalance,
+	setLastHistory,
+	clearLastHistory,
+	setCategories,
+	clearCategories,
+} = balanceSlice.actions;

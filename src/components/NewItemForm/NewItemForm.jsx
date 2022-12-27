@@ -2,8 +2,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { useEffect, useRef, useState } from "react";
 import { db } from "../../services/firebase";
 import getActualDate from "../../functions/getActualDate";
-import { getUserID, getBalance } from "../../redux/selectors";
-import { setLastHistory } from "../../redux/balanceSlice";
+import { getUserID, getBalance, getCategories } from "../../redux/selectors";
 import { useSelector } from "react-redux";
 import css from "./NewItemForm.module.css";
 import Button from "../../components/Button/Button";
@@ -22,8 +21,7 @@ const NewItemForm = ({ onClose }) => {
 	const actualDate = getActualDate();
 	const userID = useSelector(getUserID);
 	const actualBalance = useSelector(getBalance);
-
-	const categories = [{ value: "ogólny" }, { value: "leki" }, { value: "życie" }];
+	const categories = useSelector(getCategories);
 
 	useEffect(() => {
 		setDate(actualDate);
@@ -102,8 +100,8 @@ const NewItemForm = ({ onClose }) => {
 						<option value="General">General</option>
 						{categories.map((category, index) => {
 							return (
-								<option key={index} value={category.value}>
-									{category.value}
+								<option key={index} value={category.name}>
+									{category.name}
 								</option>
 							);
 						})}
