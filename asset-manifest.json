@@ -1,16 +1,23 @@
 {
   "files": {
-    "main.css": "/prosiapp/static/css/main.b3e8d4fa.css",
-    "main.js": "/prosiapp/static/js/main.5d16dc8c.js",
+    "main.css": "/prosiapp/static/css/main.77d7c519.css",
+    "main.js": "/prosiapp/static/js/main.61438b38.js",
     "static/js/787.af5c426f.chunk.js": "/prosiapp/static/js/787.af5c426f.chunk.js",
     "static/media/logo.svg": "/prosiapp/static/media/logo.1704b19af24129275fd269acbfe711b2.svg",
     "index.html": "/prosiapp/index.html",
-    "main.b3e8d4fa.css.map": "/prosiapp/static/css/main.b3e8d4fa.css.map",
-    "main.5d16dc8c.js.map": "/prosiapp/static/js/main.5d16dc8c.js.map",
+    "static/media/cancel-dark.svg": "/prosiapp/static/media/cancel-dark.84082b46dd8f490cf4f2.svg",
+    "static/media/cancel-red.svg": "/prosiapp/static/media/cancel-red.753385a5d46ae9946cdd.svg",
+    "static/media/cancel.svg": "/prosiapp/static/media/cancel.ce9070a64d3a85234ead.svg",
+    "static/media/search.svg": "/prosiapp/static/media/search.5fda9387f9bc647e3c94.svg",
+    "static/media/list.svg": "/prosiapp/static/media/list.6def6c057eab38015642.svg",
+    "static/media/plus.svg": "/prosiapp/static/media/plus.9cc5cbaf1d227e0974bf.svg",
+    "static/media/log-out.svg": "/prosiapp/static/media/log-out.205a6165aac29c0512db.svg",
+    "main.77d7c519.css.map": "/prosiapp/static/css/main.77d7c519.css.map",
+    "main.61438b38.js.map": "/prosiapp/static/js/main.61438b38.js.map",
     "787.af5c426f.chunk.js.map": "/prosiapp/static/js/787.af5c426f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b3e8d4fa.css",
-    "static/js/main.5d16dc8c.js"
+    "static/css/main.77d7c519.css",
+    "static/js/main.61438b38.js"
   ]
 }
