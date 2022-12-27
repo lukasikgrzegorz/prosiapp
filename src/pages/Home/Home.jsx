@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUserID, removeUserID, setUserEmail, removeUserEmail } from "../../redux/userSlice";
 import { setLastHistory, clearBalance, setBalance, setCategories } from "../../redux/balanceSlice";
 import { getUserID, getUserEmail, getLastHistory, getBalance } from "../../redux/selectors";
-import { getDocs, collection, query, where, orderBy } from "firebase/firestore";
+import { getDocs, collection, query, where, orderBy, limit } from "firebase/firestore";
 import { db } from "../../services/firebase";
 import OptionButton from "../../components/OptionButton/OptionButton";
 import Button from "../../components/Button/Button";
@@ -27,10 +27,18 @@ const Home = () => {
 	const userCategoriesRef = collection(db, `${userID}-categories`);
 	const [openModal, setOpenModal] = useState(false);
 	const [modalContent, setModalContent] = useState(null);
+	const [dateFrom, setDateFrom] = useState(null);
+	const [dateTo, setDateTo] = useState(null);
 	const [isLoading, setIsLoadnig] = useState(false);
 	const currentBalance = useSelector(getBalance);
 
-	const dateQuery = query(userRef, orderBy("date", "desc"));
+	const dateQuery = query(userRef, orderBy("date", "desc"), limit(15));
+	const dateRangeQuery = query(
+		userRef,
+		orderBy("date", "desc"),
+		where("date", ">=", dateFrom),
+		where("date", "<=", dateTo)
+	);
 	const categoriesQuery = query(userCategoriesRef, orderBy("name"));
 
 	useEffect(() => {
@@ -76,6 +84,18 @@ const Home = () => {
 				const categories = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
 				console.log(categories);
 				dispatch(setCategories(categories));
+			})
+			.catch((error) => console.log(error))
+			.finally(() => console.log("done"));
+	};
+
+	const fetchByDateRange = async () => {
+		await getDocs(dateRangeQuery)
+			.then((querySnapshot) => {
+				const lastHistory = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+				console.log(lastHistory);
+				dispatch(setLastHistory(lastHistory));
+				lastHistory.length > 0 && dispatch(setBalance(lastHistory[0].after));
 			})
 			.catch((error) => console.log(error))
 			.finally(() => console.log("done"));
@@ -136,15 +156,27 @@ const Home = () => {
 						<div className={css["search-holder"]}>
 							<div className={css["search-option"]}>
 								<label>
-									From: <input type="date" />
+									From:{" "}
+									<input
+										type="date"
+										onChange={(e) => {
+											setDateFrom(`${e.target.value}T00:00`);
+										}}
+									/>
 								</label>
 								<label>
-									To: <input type="date" />
+									To:{" "}
+									<input
+										type="date"
+										onChange={(e) => {
+											setDateTo(`${e.target.value}T23:59`);
+										}}
+									/>
 								</label>
-								<OptionButton option="search" />
+								<OptionButton onClickHandler={fetchByDateRange} option="search" />
 							</div>
 							<div>
-								<Button value="Lastest" />
+								<Button onClickHandler={fetchHistory} value="Lastest" />
 							</div>
 						</div>
 						<ul className={css["list"]}>
