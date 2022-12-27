@@ -11,6 +11,7 @@ import { getUserID, getUserEmail, getLastHistory, getBalance } from "../../redux
 import { getDocs, collection, query, where, orderBy } from "firebase/firestore";
 import { db } from "../../services/firebase";
 import OptionButton from "../../components/OptionButton/OptionButton";
+import Button from "../../components/Button/Button";
 import Modal from "../../components/Modal/Modal";
 import NewItemForm from "../../components/NewItemForm/NewItemForm";
 import Categories from "../../components/Categories/Categories";
@@ -131,23 +132,39 @@ const Home = () => {
 						<p className={css["value"]}>{currentBalance.toFixed(2)}</p>
 					</div>
 
-					<ul className={css["list"]}>
-						{lastHistory.map((item) => {
-							return (
-								<li
-									className={item.value > 0 ? css["item-income"] : css["item-cost"]}
-									key={item.id}
-								>
-									<div className={css["data-holder"]}>
-										<p className={css["title"]}>{item.title}</p>
-										<p className={css["data"]}>{item.category}</p>
-										<p className={css["data"]}>{item.date.slice(0, 10)}</p>
-									</div>
-									<div className={css["value"]}>{item.value.toFixed(2)}</div>
-								</li>
-							);
-						})}
-					</ul>
+					<div className={css["history-wrapper"]}>
+						<div className={css["search-holder"]}>
+							<div className={css["search-option"]}>
+								<label>
+									From: <input type="date" />
+								</label>
+								<label>
+									To: <input type="date" />
+								</label>
+								<OptionButton option="search" />
+							</div>
+							<div>
+								<Button value="Lastest" />
+							</div>
+						</div>
+						<ul className={css["list"]}>
+							{lastHistory.map((item) => {
+								return (
+									<li
+										className={item.value > 0 ? css["item-income"] : css["item-cost"]}
+										key={item.id}
+									>
+										<div className={css["data-holder"]}>
+											<p className={css["title"]}>{item.title}</p>
+											<p className={css["data"]}>{item.category}</p>
+											<p className={css["data"]}>{item.date.slice(0, 10)}</p>
+										</div>
+										<div className={css["value"]}>{item.value.toFixed(2)}</div>
+									</li>
+								);
+							})}
+						</ul>
+					</div>
 				</div>
 			</main>
 		</>

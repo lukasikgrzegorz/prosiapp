@@ -1,19 +1,9 @@
-.container{
-  min-width: 300px;
+.container {
+  display: flex;
+  width: 100%;
   max-width: 1280px;
-  padding: 0 25px;
-}
-
-@media screen and (min-width:480px) {
-  .container {
-    min-width: 400px;
-  }
-}
-
-@media screen and (min-width:768px){
-  .container {
-      min-width: 500px;
-  }
+  padding: 25px;
+  gap: 25px;
 }
 
 .header{
@@ -51,10 +41,8 @@
   background-color: #FFF9E3;
   padding: 25px;
   border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  margin-top: 25px;
+  height: max-content;
+  width: 100%;
 }
 
 .balance-wrapper:hover,
@@ -66,6 +54,7 @@
   font-size: 20px;
   font-weight: 500;
   color: #F9B65F;
+
 }
 
 .balance-wrapper .value {
@@ -74,11 +63,37 @@
   color: #FFCD02;;
 }
 
+.history-wrapper {
+  width: 100%;
+}
+
+.search-holder {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+ 
+}
+
+.search-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 15px;
+}
+
+.search-option label{
+  display: flex;
+  flex-direction: column;
+}
+
+
 .list{
-  margin-top: 15px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap:10px;
+  margin-top: 15px;
 }
 
 .item{
