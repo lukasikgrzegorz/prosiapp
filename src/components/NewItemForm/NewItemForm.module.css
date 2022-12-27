@@ -33,9 +33,12 @@
   color: #1d1d1da0;
 }
 
-.wrapper .accent:disabled{
-  color: #ffffff;
+
+.wrapper .accent {
+  color: #1d1d1da0;
+  background-color: #ffffff;
 }
+
 
 .wrapper-green{
   composes: wrapper;
@@ -47,14 +50,14 @@
   background-color: #FFE4E1; 
 }
 
-.wrapper-green .accent {
-  background-color: #57C02A;
-  color: #ffffffac;
+.wrapper-red .accent:disabled {
+  background-color: #FD7364;
+  color: #ffffff;
 }
 
-.wrapper-red .accent {
-  background-color: #FD7364;
-  color: #ffffffac;
+.wrapper-green .accent:disabled {
+  background-color: #57C02A;
+  color: #ffffff;
 }
 
 .wrapper-green select,
