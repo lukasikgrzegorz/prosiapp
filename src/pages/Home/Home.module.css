@@ -79,11 +79,11 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   gap: 15px;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 480px) {
   .search-holder {
       flex-direction: row;
       align-items: flex-end;

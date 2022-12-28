@@ -29,6 +29,7 @@ import Modal from "../../components/Modal/Modal";
 import NewItemForm from "../../components/NewItemForm/NewItemForm";
 import Categories from "../../components/Categories/Categories";
 import Statistics from "../../components/Statistics/Statistics";
+import Loader from "../../components/Loader/Loader";
 import css from "./Home.module.css";
 
 const Home = () => {
@@ -84,30 +85,31 @@ const Home = () => {
 	};
 
 	const fetchLastHistory = async () => {
+		setIsLoadnig(true);
 		await getDocs(dateQuery)
 			.then((querySnapshot) => {
 				const lastHistory = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-				console.log(lastHistory);
 				dispatch(setHistoryType("last"));
 				dispatch(setHistory(lastHistory));
 				lastHistory.length > 0 && dispatch(setBalance(lastHistory[0].after));
 			})
 			.catch((error) => console.log(error))
-			.finally(() => console.log("done"));
+			.finally(() => setIsLoadnig(false));
 	};
 
 	const fetchCategories = async () => {
+		setIsLoadnig(true);
 		await getDocs(categoriesQuery)
 			.then((querySnapshot) => {
 				const categories = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-				console.log(categories);
 				dispatch(setCategories(categories));
 			})
 			.catch((error) => console.log(error))
-			.finally(() => console.log("done"));
+			.finally(() => setIsLoadnig(false));
 	};
 
 	const fetchByDateRange = async () => {
+		setIsLoadnig(true);
 		await getDocs(dateRangeQuery)
 			.then((querySnapshot) => {
 				const history = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
@@ -116,7 +118,7 @@ const Home = () => {
 				dispatch(setHistory(history));
 			})
 			.catch((error) => console.log(error))
-			.finally(() => console.log("done"));
+			.finally(() => setIsLoadnig(false));
 	};
 
 	useEffect(() => {
@@ -143,6 +145,7 @@ const Home = () => {
 
 	return (
 		<>
+			{isLoading && <Loader />}
 			<OptionButton option="add" onClickHandler={openModalAdd} />
 			{openModal && (
 				<Modal>

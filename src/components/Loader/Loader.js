@@ -1,17 +1,17 @@
 import React from "react";
-import { ThreeDots } from "react-loader-spinner";
+import { Rings } from "react-loader-spinner";
 import css from "./Loader.module.css";
 
 const Loader = () => {
 	return (
 		<div className={css["loader"]}>
-			<ThreeDots
+			<Rings
 				height="80"
 				width="80"
-				radius="9"
-				color="#FF941C"
-				ariaLabel="three-dots-loading"
+				color="#41377C"
+				radius="6"
 				visible={true}
+				ariaLabel="rings-loading"
 			/>
 		</div>
 	);

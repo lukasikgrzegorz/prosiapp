@@ -4,14 +4,17 @@ import { auth } from "../../services/firebase";
 import { NavLink, useNavigate } from "react-router-dom";
 import Logo from "../../components/Logo/Logo";
 import Button from "../../components/Button/Button";
+import Loader from "../../components/Loader/Loader";
 import css from "./Login.module.css";
 
 const Login = () => {
 	const navigate = useNavigate();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [isLoading, setIsLoadnig] = useState(false);
 
 	const onLogin = (e) => {
+		setIsLoadnig(true);
 		e.preventDefault();
 		signInWithEmailAndPassword(auth, email, password)
 			.then((userCredential) => {
@@ -23,11 +26,15 @@ const Login = () => {
 				const errorCode = error.code;
 				const errorMessage = error.message;
 				console.log(errorCode, errorMessage);
+			})
+			.finally(() => {
+				setIsLoadnig(false);
 			});
 	};
 
 	return (
 		<>
+			{isLoading && <Loader />}
 			<main>
 				<section>
 					<div className={css["wrapper"]}>

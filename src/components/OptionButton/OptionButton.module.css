@@ -24,6 +24,7 @@
   position: fixed;
   bottom: 25px;
   right: 25px;
+  opacity: 0.9;
 }
 
 .button-logout {
