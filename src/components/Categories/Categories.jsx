@@ -73,7 +73,7 @@ const Categories = ({ onClose }) => {
 			<input
 				ref={inputNewCategoryRef}
 				type="text"
-				placeholder="Category name"
+				placeholder="New category name"
 				onChange={(e) => setNewCategory(e.target.value)}
 			></input>
 			<Button value="Add" onClickHandler={addNewCategory} />
