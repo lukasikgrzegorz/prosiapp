@@ -1,9 +1,16 @@
 .container {
   display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: 1280px;
   padding: 25px;
   gap: 25px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    flex-direction: row;
+  }
 }
 
 .header{
@@ -63,7 +70,7 @@
   color: #FFCD02;;
 }
 
-.history-wrapper {
+.inside-wrapper {
   width: 100%;
 }
 

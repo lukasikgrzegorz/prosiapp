@@ -14,7 +14,13 @@ import {
 	setCategories,
 	clearHistory,
 } from "../../redux/balanceSlice";
-import { getUserID, getUserEmail, getHistory, getBalance } from "../../redux/selectors";
+import {
+	getUserID,
+	getUserEmail,
+	getHistory,
+	getBalance,
+	getHistoryType,
+} from "../../redux/selectors";
 import { getDocs, collection, query, where, orderBy, limit } from "firebase/firestore";
 import { db } from "../../services/firebase";
 import OptionButton from "../../components/OptionButton/OptionButton";
@@ -22,6 +28,7 @@ import Button from "../../components/Button/Button";
 import Modal from "../../components/Modal/Modal";
 import NewItemForm from "../../components/NewItemForm/NewItemForm";
 import Categories from "../../components/Categories/Categories";
+import Statistics from "../../components/Statistics/Statistics";
 import css from "./Home.module.css";
 
 const Home = () => {
@@ -30,6 +37,7 @@ const Home = () => {
 	const userID = useSelector(getUserID);
 	const userEmail = useSelector(getUserEmail);
 	const history = useSelector(getHistory);
+	const historyType = useSelector(getHistoryType);
 	const userRef = collection(db, `${userID}`);
 	const userCategoriesRef = collection(db, `${userID}-categories`);
 	const [openModal, setOpenModal] = useState(false);
@@ -157,12 +165,15 @@ const Home = () => {
 			</header>
 			<main>
 				<div className={css["container"]}>
-					<div className={css["balance-wrapper"]}>
-						<p className={css["title"]}>Current balance:</p>
-						<p className={css["value"]}>{currentBalance.toFixed(2)}</p>
+					<div className={css["inside-wrapper"]}>
+						<div className={css["balance-wrapper"]}>
+							<p className={css["title"]}>Current balance:</p>
+							<p className={css["value"]}>{currentBalance.toFixed(2)}</p>
+						</div>
+						{history.length > 0 && historyType === "range" && <Statistics data={history} />}
 					</div>
 
-					<div className={css["history-wrapper"]}>
+					<div className={css["inside-wrapper"]}>
 						<div className={css["search-holder"]}>
 							<div className={css["search-option"]}>
 								<label>
