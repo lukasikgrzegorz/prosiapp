@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../../services/firebase";
 import { useNavigate } from "react-router-dom";
@@ -40,6 +40,8 @@ const Home = () => {
 	const history = useSelector(getHistory);
 	const historyType = useSelector(getHistoryType);
 	const userRef = collection(db, `${userID}`);
+	const inputDateFromRef = useRef();
+	const inputDateToRef = useRef();
 	const userCategoriesRef = collection(db, `${userID}-categories`);
 	const [openModal, setOpenModal] = useState(false);
 	const [modalContent, setModalContent] = useState(null);
@@ -91,6 +93,8 @@ const Home = () => {
 				const lastHistory = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
 				dispatch(setHistoryType("last"));
 				dispatch(setHistory(lastHistory));
+				inputDateFromRef.current.value = null;
+				inputDateToRef.current.value = null;
 				lastHistory.length > 0 && dispatch(setBalance(lastHistory[0].after));
 			})
 			.catch((error) => console.log(error))
@@ -182,6 +186,7 @@ const Home = () => {
 								<label>
 									From:{" "}
 									<input
+										ref={inputDateFromRef}
 										type="date"
 										onChange={(e) => {
 											setDateFrom(`${e.target.value}T00:00`);
@@ -191,6 +196,7 @@ const Home = () => {
 								<label>
 									To:{" "}
 									<input
+										ref={inputDateToRef}
 										type="date"
 										onChange={(e) => {
 											setDateTo(`${e.target.value}T23:59`);
@@ -203,6 +209,7 @@ const Home = () => {
 								<Button onClickHandler={fetchLastHistory} value="Lastest" />
 							</div>
 						</div>
+						{history.length === 0 && <p>Thers no item</p>}
 						<ul className={css["list"]}>
 							{history.map((item) => {
 								return (

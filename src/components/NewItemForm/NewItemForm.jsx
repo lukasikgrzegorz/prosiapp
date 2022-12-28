@@ -17,7 +17,6 @@ const NewItemForm = ({ onClose }) => {
 	const inputDateRef = useRef();
 	const inputTitleRef = useRef();
 	const inputValueRef = useRef();
-	const selectCategoryRef = useRef();
 	const actualDate = getActualDate();
 	const userID = useSelector(getUserID);
 	const actualBalance = useSelector(getBalance);
