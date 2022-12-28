@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { db } from "../../services/firebase";
 import { getUserID, getCategories } from "../../redux/selectors";
 import { useSelector } from "react-redux";
+import Notiflix from "notiflix";
 import Button from "../../components/Button/Button";
 import OptionButton from "../OptionButton/OptionButton";
 
@@ -25,24 +26,24 @@ const Categories = ({ onClose }) => {
 				const docRef = await addDoc(collection(db, `${userID}-categories`), {
 					name: newCategory,
 				});
-				console.log("Document written with ID: ", docRef.id);
-			} catch (e) {
-				console.error("Error adding document: ", e);
+				Notiflix.Notify.success("Category created");
+			} catch (error) {
+				Notiflix.Notify.failure(error);
 			} finally {
 				clearInput();
 				onClose();
 			}
 		} else {
-			console.log("Puste pola!");
+			Notiflix.Notify.failure("Empty fields!");
 		}
 	};
 
 	const deleteCategory = async (id) => {
 		try {
 			await deleteDoc(doc(db, `${userID}-categories`, id));
-			console.log("Document deleted");
-		} catch (e) {
-			console.error("Error adding document: ", e);
+			Notiflix.Notify.success("Category deleted");
+		} catch (error) {
+			Notiflix.Notify.failure(error);
 		} finally {
 			clearInput();
 			onClose();

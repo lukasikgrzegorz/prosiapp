@@ -4,6 +4,7 @@ import { db } from "../../services/firebase";
 import getActualDate from "../../functions/getActualDate";
 import { getUserID, getBalance, getCategories } from "../../redux/selectors";
 import { useSelector } from "react-redux";
+import Notiflix from "notiflix";
 import css from "./NewItemForm.module.css";
 import Button from "../../components/Button/Button";
 import OptionButton from "../OptionButton/OptionButton";
@@ -63,9 +64,9 @@ const NewItemForm = ({ onClose }) => {
 					before: actualBalance,
 					after: finishValue,
 				});
-				console.log("Document written with ID: ", docRef.id);
-			} catch (e) {
-				console.error("Error adding document: ", e);
+				Notiflix.Notify.success("Item created");
+			} catch (error) {
+				Notiflix.Notify.failure(error);
 			} finally {
 				clearInput();
 				onClose();

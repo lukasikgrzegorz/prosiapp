@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../services/firebase";
+import Notiflix from "notiflix";
 import Button from "../../components/Button/Button";
 import Logo from "../../components/Logo/Logo";
 import Loader from "../../components/Loader/Loader";
@@ -19,13 +20,13 @@ const Signup = () => {
 		await createUserWithEmailAndPassword(auth, email, password)
 			.then((userCredential) => {
 				const user = userCredential.user;
-				console.log(user);
+				Notiflix.Notify.success("User created");
 				navigate("/login");
 			})
 			.catch((error) => {
 				const errorCode = error.code;
 				const errorMessage = error.message;
-				console.log(errorCode, errorMessage);
+				Notiflix.Notify.failure(errorCode, errorMessage);
 			})
 			.finally(() => {
 				setIsLoadnig(false);
