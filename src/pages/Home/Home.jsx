@@ -194,9 +194,9 @@ const Home = () => {
 										}}
 									/>
 								</label>
-								<OptionButton onClickHandler={fetchByDateRange} option="search" />
 							</div>
-							<div>
+							<OptionButton onClickHandler={fetchByDateRange} option="search" />
+							<div className={css["last-btn-holder"]}>
 								<Button onClickHandler={fetchLastHistory} value="Lastest" />
 							</div>
 						</div>
