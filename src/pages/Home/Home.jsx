@@ -6,8 +6,15 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserID, removeUserID, setUserEmail, removeUserEmail } from "../../redux/userSlice";
-import { setLastHistory, clearBalance, setBalance, setCategories } from "../../redux/balanceSlice";
-import { getUserID, getUserEmail, getLastHistory, getBalance } from "../../redux/selectors";
+import {
+	setHistory,
+	setHistoryType,
+	clearBalance,
+	setBalance,
+	setCategories,
+	clearHistory,
+} from "../../redux/balanceSlice";
+import { getUserID, getUserEmail, getHistory, getBalance } from "../../redux/selectors";
 import { getDocs, collection, query, where, orderBy, limit } from "firebase/firestore";
 import { db } from "../../services/firebase";
 import OptionButton from "../../components/OptionButton/OptionButton";
@@ -22,7 +29,7 @@ const Home = () => {
 	const dispatch = useDispatch();
 	const userID = useSelector(getUserID);
 	const userEmail = useSelector(getUserEmail);
-	const lastHistory = useSelector(getLastHistory);
+	const history = useSelector(getHistory);
 	const userRef = collection(db, `${userID}`);
 	const userCategoriesRef = collection(db, `${userID}-categories`);
 	const [openModal, setOpenModal] = useState(false);
@@ -61,17 +68,20 @@ const Home = () => {
 				dispatch(removeUserID());
 				dispatch(removeUserEmail());
 				dispatch(clearBalance());
+				dispatch(clearHistory());
+				dispatch(setHistoryType("last"));
 				console.log("Signed out successfully");
 			})
 			.catch((error) => {});
 	};
 
-	const fetchHistory = async () => {
+	const fetchLastHistory = async () => {
 		await getDocs(dateQuery)
 			.then((querySnapshot) => {
 				const lastHistory = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
 				console.log(lastHistory);
-				dispatch(setLastHistory(lastHistory));
+				dispatch(setHistoryType("last"));
+				dispatch(setHistory(lastHistory));
 				lastHistory.length > 0 && dispatch(setBalance(lastHistory[0].after));
 			})
 			.catch((error) => console.log(error))
@@ -92,24 +102,24 @@ const Home = () => {
 	const fetchByDateRange = async () => {
 		await getDocs(dateRangeQuery)
 			.then((querySnapshot) => {
-				const lastHistory = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-				console.log(lastHistory);
-				dispatch(setLastHistory(lastHistory));
-				lastHistory.length > 0 && dispatch(setBalance(lastHistory[0].after));
+				const history = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+				console.log(history);
+				dispatch(setHistoryType("range"));
+				dispatch(setHistory(history));
 			})
 			.catch((error) => console.log(error))
 			.finally(() => console.log("done"));
 	};
 
 	useEffect(() => {
-		fetchHistory();
+		fetchLastHistory();
 		fetchCategories();
 	}, [userID]);
 
 	const closeModalwithBtn = () => {
 		setOpenModal(false);
 		setModalContent(null);
-		fetchHistory();
+		fetchLastHistory();
 		fetchCategories();
 	};
 
@@ -176,11 +186,11 @@ const Home = () => {
 								<OptionButton onClickHandler={fetchByDateRange} option="search" />
 							</div>
 							<div>
-								<Button onClickHandler={fetchHistory} value="Lastest" />
+								<Button onClickHandler={fetchLastHistory} value="Lastest" />
 							</div>
 						</div>
 						<ul className={css["list"]}>
-							{lastHistory.map((item) => {
+							{history.map((item) => {
 								return (
 									<li
 										className={item.value > 0 ? css["item-income"] : css["item-cost"]}

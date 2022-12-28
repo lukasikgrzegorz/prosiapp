@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
 	balance: 0,
-	lastHistory: [],
+	historyType: "last",
+	history: [],
 	categories: [],
 };
 
@@ -16,11 +17,14 @@ const balanceSlice = createSlice({
 		clearBalance(state) {
 			state.balance = 0;
 		},
-		setLastHistory(state, action) {
-			state.lastHistory = action.payload;
+		setHistoryType(state, action) {
+			state.historyType = action.payload;
 		},
-		clearLastHistory(state) {
-			state.lastHistory = [];
+		setHistory(state, action) {
+			state.history = action.payload;
+		},
+		clearHistory(state) {
+			state.history = [];
 		},
 		setCategories(state, action) {
 			state.categories = action.payload;
@@ -35,8 +39,9 @@ export const balanceReducer = balanceSlice.reducer;
 export const {
 	setBalance,
 	clearBalance,
-	setLastHistory,
-	clearLastHistory,
+	setHistoryType,
+	setHistory,
+	clearHistory,
 	setCategories,
 	clearCategories,
 } = balanceSlice.actions;
