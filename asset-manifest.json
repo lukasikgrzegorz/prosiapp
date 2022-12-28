@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/prosiapp/static/css/main.3ffe781c.css",
+    "main.css": "/prosiapp/static/css/main.a33ab174.css",
     "main.js": "/prosiapp/static/js/main.957d127f.js",
     "static/js/787.af5c426f.chunk.js": "/prosiapp/static/js/787.af5c426f.chunk.js",
     "static/media/logo.svg": "/prosiapp/static/media/logo.1704b19af24129275fd269acbfe711b2.svg",
@@ -12,12 +12,12 @@
     "static/media/list.svg": "/prosiapp/static/media/list.6def6c057eab38015642.svg",
     "static/media/plus.svg": "/prosiapp/static/media/plus.9cc5cbaf1d227e0974bf.svg",
     "static/media/log-out.svg": "/prosiapp/static/media/log-out.205a6165aac29c0512db.svg",
-    "main.3ffe781c.css.map": "/prosiapp/static/css/main.3ffe781c.css.map",
+    "main.a33ab174.css.map": "/prosiapp/static/css/main.a33ab174.css.map",
     "main.957d127f.js.map": "/prosiapp/static/js/main.957d127f.js.map",
     "787.af5c426f.chunk.js.map": "/prosiapp/static/js/787.af5c426f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3ffe781c.css",
+    "static/css/main.a33ab174.css",
     "static/js/main.957d127f.js"
   ]
 }
