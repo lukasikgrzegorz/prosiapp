@@ -30,6 +30,7 @@ import NewItemForm from "../../components/NewItemForm/NewItemForm";
 import Categories from "../../components/Categories/Categories";
 import Statistics from "../../components/Statistics/Statistics";
 import Loader from "../../components/Loader/Loader";
+import EmptyContainer from "../../components/EmptyContainer/EmptyContainer";
 import css from "./Home.module.css";
 
 const Home = () => {
@@ -117,7 +118,6 @@ const Home = () => {
 		await getDocs(dateRangeQuery)
 			.then((querySnapshot) => {
 				const history = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-				console.log(history);
 				dispatch(setHistoryType("range"));
 				dispatch(setHistory(history));
 			})
@@ -209,7 +209,7 @@ const Home = () => {
 								<Button onClickHandler={fetchLastHistory} value="Lastest" />
 							</div>
 						</div>
-						{history.length === 0 && <p>Thers no item</p>}
+						{history.length === 0 && <EmptyContainer />}
 						<ul className={css["list"]}>
 							{history.map((item) => {
 								return (

@@ -72,7 +72,7 @@ const NewItemForm = ({ onClose }) => {
 				onClose();
 			}
 		} else {
-			console.log("Puste pola!");
+			Notiflix.Notify.failure("Complete all fields");
 		}
 	};
 
