@@ -18,6 +18,7 @@ import { getUserID, getHistory, getBalance, getHistoryType } from "../../redux/s
 import { getDocs, collection, query, where, orderBy, limit } from "firebase/firestore";
 import { db } from "../../services/firebase";
 import Header from "../../components/Header/Header";
+import CurrentBalance from "../../components/CurrentBalance/CurrentBalance";
 import OptionButton from "../../components/OptionButton/OptionButton";
 import Button from "../../components/Button/Button";
 import Modal from "../../components/Modal/Modal";
@@ -155,13 +156,9 @@ const Home = () => {
 			<main>
 				<div className={css["container"]}>
 					<div className={css["inside-wrapper"]}>
-						<div className={css["balance-wrapper"]}>
-							<p className={css["title"]}>Current balance:</p>
-							<p className={css["value"]}>{currentBalance.toFixed(2)}</p>
-						</div>
+						<CurrentBalance value={currentBalance} />
 						{history.length > 0 && historyType === "range" && <Statistics data={history} />}
 					</div>
-
 					<div className={css["inside-wrapper"]}>
 						<div className={css["search-holder"]}>
 							<div className={css["search-option"]}>

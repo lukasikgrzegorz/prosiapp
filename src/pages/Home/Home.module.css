@@ -15,32 +15,6 @@
 }
 
 
-.balance-wrapper{
-  background-color: #FFF9E3;
-  padding: 25px;
-  border-radius: 10px;
-  height: max-content;
-  width: 100%;
-}
-
-.balance-wrapper:hover,
-.balance-wrapper:focus{
-  background-color: #FFF5CF;
-}
-
-.balance-wrapper .title{
-  font-size: 20px;
-  font-weight: 500;
-  color: #F9B65F;
-
-}
-
-.balance-wrapper .value {
-  font-size: 40px;
-  font-weight: 700;
-  color: #FFCD02;;
-}
-
 .inside-wrapper {
   width: 100%;
 }

@@ -1,0 +1,26 @@
+.wrapper {
+  background-color: #FFF9E3;
+  padding: 25px;
+  border-radius: 10px;
+  height: max-content;
+  width: 100%;
+}
+
+.wrapper:hover,
+.wrapper:focus {
+  background-color: #FFF5CF;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #F9B65F;
+
+}
+
+.value {
+  font-size: 40px;
+  font-weight: 700;
+  color: #FFCD02;
+  ;
+}
