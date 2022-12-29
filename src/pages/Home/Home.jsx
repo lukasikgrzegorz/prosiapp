@@ -27,6 +27,7 @@ import Categories from "../../components/Categories/Categories";
 import Statistics from "../../components/Statistics/Statistics";
 import Loader from "../../components/Loader/Loader";
 import EmptyContainer from "../../components/EmptyContainer/EmptyContainer";
+import HisotryItem from "../../components/HistoryItem/HistoryItem";
 import css from "./Home.module.css";
 
 const Home = () => {
@@ -184,26 +185,14 @@ const Home = () => {
 								</label>
 							</div>
 							<OptionButton onClickHandler={fetchByDateRange} option="search" />
-							<div className={css["last-btn-holder"]}>
-								<Button onClickHandler={fetchLastHistory} value="Lastest" />
+							<div className={css["latest-btn-holder"]}>
+								<Button onClickHandler={fetchLastHistory} value="Latest" />
 							</div>
 						</div>
 						{history.length === 0 && <EmptyContainer />}
 						<ul className={css["list"]}>
 							{history.map((item) => {
-								return (
-									<li
-										className={item.value > 0 ? css["item-income"] : css["item-cost"]}
-										key={item.id}
-									>
-										<div className={css["data-holder"]}>
-											<p className={css["title"]}>{item.title}</p>
-											<p className={css["data"]}>{item.category}</p>
-											<p className={css["data"]}>{item.date.slice(0, 10)}</p>
-										</div>
-										<div className={css["value"]}>{item.value.toFixed(2)}</div>
-									</li>
-								);
+								return <HisotryItem key={item.id} data={item} />;
 							})}
 						</ul>
 					</div>
