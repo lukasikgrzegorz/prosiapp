@@ -29,7 +29,7 @@
 }
 
 .title {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
 }
 
@@ -40,5 +40,5 @@
 
 .data {
   font-size: 12px;
-  font-weight: 300;
+  font-weight: 500;
 }

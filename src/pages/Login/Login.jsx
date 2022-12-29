@@ -22,7 +22,6 @@ const Login = () => {
 				const user = userCredential.user;
 				navigate("/");
 				Notiflix.Notify.success("Logged in");
-				console.log(user);
 			})
 			.catch((error) => {
 				const errorCode = error.code;

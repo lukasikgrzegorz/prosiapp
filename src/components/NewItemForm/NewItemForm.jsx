@@ -1,11 +1,11 @@
+import css from "./NewItemForm.module.css";
 import { addDoc, collection } from "firebase/firestore";
 import { useEffect, useRef, useState } from "react";
 import { db } from "../../services/firebase";
-import getActualDate from "../../functions/getActualDate";
 import { getUserID, getBalance, getCategories } from "../../redux/selectors";
 import { useSelector } from "react-redux";
+import getActualDate from "../../functions/getActualDate";
 import Notiflix from "notiflix";
-import css from "./NewItemForm.module.css";
 import Button from "../../components/Button/Button";
 import OptionButton from "../OptionButton/OptionButton";
 
@@ -15,7 +15,6 @@ const NewItemForm = ({ onClose }) => {
 	const [date, setDate] = useState();
 	const [isIncome, setIsIncome] = useState(true);
 	const [category, setCategory] = useState("General");
-	const inputDateRef = useRef();
 	const inputTitleRef = useRef();
 	const inputValueRef = useRef();
 	const actualDate = getActualDate();

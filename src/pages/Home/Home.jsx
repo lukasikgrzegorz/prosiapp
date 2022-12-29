@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import Notiflix from "notiflix";
 import { signOut } from "firebase/auth";
 import { auth } from "../../services/firebase";
 import { useNavigate } from "react-router-dom";
@@ -78,9 +79,11 @@ const Home = () => {
 				dispatch(clearBalance());
 				dispatch(clearHistory());
 				dispatch(setHistoryType("last"));
-				console.log("Signed out successfully");
+				Notiflix.Notify.success("Signed out successfully");
 			})
-			.catch((error) => {});
+			.catch((error) => {
+				Notiflix.Notify.failure(error);
+			});
 	};
 
 	const fetchLastHistory = async () => {
@@ -90,11 +93,13 @@ const Home = () => {
 				const lastHistory = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
 				dispatch(setHistoryType("last"));
 				dispatch(setHistory(lastHistory));
-				inputDateFromRef.current.value = null;
-				inputDateToRef.current.value = null;
+				if (userID) {
+					inputDateFromRef.current.value = null;
+					inputDateToRef.current.value = null;
+				}
 				lastHistory.length > 0 && dispatch(setBalance(lastHistory[0].after));
 			})
-			.catch((error) => console.log(error))
+			.catch((error) => Notiflix.Notify.failure(error))
 			.finally(() => setIsLoadnig(false));
 	};
 
@@ -105,7 +110,7 @@ const Home = () => {
 				const categories = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
 				dispatch(setCategories(categories));
 			})
-			.catch((error) => console.log(error))
+			.catch((error) => Notiflix.Notify.failure(error))
 			.finally(() => setIsLoadnig(false));
 	};
 
@@ -117,7 +122,7 @@ const Home = () => {
 				dispatch(setHistoryType("range"));
 				dispatch(setHistory(history));
 			})
-			.catch((error) => console.log(error))
+			.catch((error) => Notiflix.Notify.failure(error))
 			.finally(() => setIsLoadnig(false));
 	};
 
