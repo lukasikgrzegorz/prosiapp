@@ -1,5 +1,5 @@
 .wrapper{
-  padding: 50px;
+  padding: 60px 50px;
   border-radius: 5px;
   display: flex;
   position: relative;
@@ -10,10 +10,13 @@
   color: #ffffff;
   min-width: 280px;
   max-height: 400px;
+  margin: auto;
 }
 
 @media screen and (min-width: 480px) {
-  .wrapper{min-width: 380px}
+  .wrapper{
+    width: max-content;
+    min-width: 380px}
 }
 
 @media screen and (min-width:768px) {

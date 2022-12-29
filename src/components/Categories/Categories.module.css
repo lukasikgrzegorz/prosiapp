@@ -9,18 +9,20 @@
   gap: 15px;
   background-color: #FEFAFF;
   min-width: 280px;
-  max-height: 400px;
+  margin: auto;
 }
 
 @media screen and (min-width: 480px) {
   .wrapper {
+    width: max-content;
     min-width: 380px
   }
 }
 
 @media screen and (min-width:768px) {
   .wrapper {
-    min-width: 500px
+
+    min-width: 500px;
   }
 }
 

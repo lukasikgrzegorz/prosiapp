@@ -1,7 +1,19 @@
+import { useEffect } from "react";
 import css from "./Modal.module.css";
 
 const Modal = ({ children }) => {
-	return <div className={css["backdrop"]}>{children}</div>;
+	useEffect(() => {
+		document.body.style.overflow = "hidden";
+		return () => {
+			document.body.style.overflow = "unset";
+		};
+	}, []);
+
+	return (
+		<div className={css["backdrop"]}>
+			<div className={css["holder"]}>{children}</div>
+		</div>
+	);
 };
 
 export default Modal;
