@@ -6,6 +6,9 @@
   align-items: center;
   justify-content: center;
   padding: 15px;
+  height: 100vh;
+  max-height: -webkit-fill-available; 
+ 
 }
 
 .form{
