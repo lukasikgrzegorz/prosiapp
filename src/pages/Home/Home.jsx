@@ -100,7 +100,10 @@ const Home = () => {
 				lastHistory.length > 0 && dispatch(setBalance(lastHistory[0].after));
 			})
 			.catch((error) => Notiflix.Notify.failure(error))
-			.finally(() => setIsLoadnig(false));
+			.finally(() => {
+				setIsLoadnig(false);
+				window.scrollTo({ top: 0, behavior: "smooth" });
+			});
 	};
 
 	const fetchCategories = async () => {
@@ -111,7 +114,10 @@ const Home = () => {
 				dispatch(setCategories(categories));
 			})
 			.catch((error) => Notiflix.Notify.failure(error))
-			.finally(() => setIsLoadnig(false));
+			.finally(() => {
+				setIsLoadnig(false);
+				window.scrollTo({ top: 0, behavior: "smooth" });
+			});
 	};
 
 	const fetchByDateRange = async () => {
@@ -123,7 +129,10 @@ const Home = () => {
 				dispatch(setHistory(history));
 			})
 			.catch((error) => Notiflix.Notify.failure(error))
-			.finally(() => setIsLoadnig(false));
+			.finally(() => {
+				setIsLoadnig(false);
+				window.scrollTo({ top: 0, behavior: "smooth" });
+			});
 	};
 
 	useEffect(() => {
