@@ -20,7 +20,6 @@ const Categories = ({ onClose }) => {
 	};
 
 	const addNewCategory = async () => {
-		console.log("Test");
 		if (newCategory) {
 			try {
 				const docRef = await addDoc(collection(db, `${userID}-categories`), {
