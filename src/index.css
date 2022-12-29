@@ -8,6 +8,10 @@
               color 300ms linear;
 }
 
+html{
+  height: -webkit-fill-available;;
+}
+
 body {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 14px;
@@ -15,6 +19,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #FEFAFF;
   color: #41377C;
+  height: 100vh;
+  height: -webkit-fill-available;;
  
 }
 
