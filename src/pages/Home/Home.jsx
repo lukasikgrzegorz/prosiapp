@@ -14,15 +14,10 @@ import {
 	setCategories,
 	clearHistory,
 } from "../../redux/balanceSlice";
-import {
-	getUserID,
-	getUserEmail,
-	getHistory,
-	getBalance,
-	getHistoryType,
-} from "../../redux/selectors";
+import { getUserID, getHistory, getBalance, getHistoryType } from "../../redux/selectors";
 import { getDocs, collection, query, where, orderBy, limit } from "firebase/firestore";
 import { db } from "../../services/firebase";
+import Header from "../../components/Header/Header";
 import OptionButton from "../../components/OptionButton/OptionButton";
 import Button from "../../components/Button/Button";
 import Modal from "../../components/Modal/Modal";
@@ -37,7 +32,6 @@ const Home = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const userID = useSelector(getUserID);
-	const userEmail = useSelector(getUserEmail);
 	const history = useSelector(getHistory);
 	const historyType = useSelector(getHistoryType);
 	const userRef = collection(db, `${userID}`);
@@ -157,19 +151,7 @@ const Home = () => {
 					{modalContent === "categories" && <Categories onClose={closeModalwithBtn} />}
 				</Modal>
 			)}
-			<header className={css["header"]}>
-				<div className={css["header-container"]}>
-					<div>
-						<OptionButton option="categories" onClickHandler={openModalCategories}></OptionButton>
-					</div>
-					<div className={css["header-user"]}>
-						<div>{userEmail}</div>
-						<div>
-							<OptionButton option="logout" onClickHandler={handleLogout} />
-						</div>
-					</div>
-				</div>
-			</header>
+			<Header categories={openModalCategories} logout={handleLogout} />
 			<main>
 				<div className={css["container"]}>
 					<div className={css["inside-wrapper"]}>

@@ -14,36 +14,6 @@
   }
 }
 
-.header{
-  width: 100%;
-  padding: 15px 15px;
-  background-color: #41377C;
-  color: #FFFFFF;
-}
-
-.header-container{
-  max-width: 1280px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1280px;
-  margin: auto;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.header-user {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0px;
-}
-
-@media screen and (min-width: 480px) {
-  .header-user{
-    font-size: 12px;
-  }
-}
 
 .balance-wrapper{
   background-color: #FFF9E3;
