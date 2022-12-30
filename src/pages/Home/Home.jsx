@@ -121,18 +121,22 @@ const Home = () => {
 	};
 
 	const fetchByDateRange = async () => {
-		setIsLoadnig(true);
-		await getDocs(dateRangeQuery)
-			.then((querySnapshot) => {
-				const history = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-				dispatch(setHistoryType("range"));
-				dispatch(setHistory(history));
-			})
-			.catch((error) => Notiflix.Notify.failure(error))
-			.finally(() => {
-				setIsLoadnig(false);
-				window.scrollTo({ top: 0, behavior: "smooth" });
-			});
+		if (dateFrom !== null && dateTo !== null && dateFrom <= dateTo) {
+			setIsLoadnig(true);
+			await getDocs(dateRangeQuery)
+				.then((querySnapshot) => {
+					const history = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+					dispatch(setHistoryType("range"));
+					dispatch(setHistory(history));
+				})
+				.catch((error) => Notiflix.Notify.failure(error))
+				.finally(() => {
+					setIsLoadnig(false);
+					window.scrollTo({ top: 0, behavior: "smooth" });
+				});
+		} else {
+			Notiflix.Notify.failure("Date form error. Check values.");
+		}
 	};
 
 	useEffect(() => {
