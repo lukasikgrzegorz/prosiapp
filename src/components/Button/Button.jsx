@@ -1,8 +1,9 @@
+import React from "react";
 import css from "./Button.module.css";
 
 const Button = ({ value, onClickHandler }) => {
 	return (
-		<button onClick={onClickHandler} className={css["button"]}>
+		<button data-testid="button" onClick={onClickHandler} className={css["button"]}>
 			{value}
 		</button>
 	);

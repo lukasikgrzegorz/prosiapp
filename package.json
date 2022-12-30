@@ -5,7 +5,6 @@
   "homepage": "https://lukasikgrzegorz.github.io/prosiapp",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
-    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
     "firebase": "^9.15.0",
@@ -46,6 +45,15 @@
     ]
   },
   "devDependencies": {
-    "jest": "^27.5.1"
+    "@testing-library/jest-dom": "^5.16.5",
+    "jest": "^27.5.1",
+    "jest-module-name-mapper": "^0.1.5"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "moduleNameMapper": {
+      "\\.(css|less|sass|scss)$": "<rootDir>/CSSStub.js",
+      "\\.(gif|ttf|eot|svg)$": "<rootDir>/CSSStub.js"
+    }
   }
 }
