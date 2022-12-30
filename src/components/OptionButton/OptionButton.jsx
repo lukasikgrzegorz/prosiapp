@@ -1,3 +1,4 @@
+import React from "react";
 import css from "./OptionButton.module.css";
 
 const OptionButton = ({ option, onClickHandler }) => {
@@ -24,7 +25,13 @@ const OptionButton = ({ option, onClickHandler }) => {
 			break;
 	}
 
-	return <button onClick={onClickHandler} className={css[styleHandler]}></button>;
+	return (
+		<button
+			data-testid="optionbutton"
+			onClick={onClickHandler}
+			className={css[styleHandler]}
+		></button>
+	);
 };
 
 export default OptionButton;
