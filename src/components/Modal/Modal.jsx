@@ -1,7 +1,14 @@
 import { useEffect } from "react";
 import css from "./Modal.module.css";
 
-const Modal = ({ children }) => {
+const Modal = ({ children, escHandler }) => {
+	useEffect(() => {
+		document.addEventListener("keydown", escHandler);
+		return () => {
+			document.removeEventListener("keydown", escHandler);
+		};
+	}, [escHandler]);
+
 	useEffect(() => {
 		document.body.style.overflow = "hidden";
 		return () => {

@@ -166,7 +166,7 @@ const Home = () => {
 			{isLoading && <Loader />}
 			<OptionButton option="add" onClickHandler={openModalAdd} />
 			{openModal && (
-				<Modal>
+				<Modal escHandler={closeModalwithBtn}>
 					{modalContent === "add" && <NewItemForm onClose={closeModalwithBtn} />}
 					{modalContent === "categories" && <Categories onClose={closeModalwithBtn} />}
 				</Modal>
