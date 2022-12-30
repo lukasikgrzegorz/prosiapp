@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/prosiapp/static/css/main.fb55119e.css",
-    "main.js": "/prosiapp/static/js/main.411ed7a5.js",
+    "main.js": "/prosiapp/static/js/main.223684cd.js",
     "static/js/787.af5c426f.chunk.js": "/prosiapp/static/js/787.af5c426f.chunk.js",
     "static/media/logo.svg": "/prosiapp/static/media/logo.1704b19af24129275fd269acbfe711b2.svg",
     "index.html": "/prosiapp/index.html",
@@ -13,11 +13,11 @@
     "static/media/plus.svg": "/prosiapp/static/media/plus.9cc5cbaf1d227e0974bf.svg",
     "static/media/log-out.svg": "/prosiapp/static/media/log-out.205a6165aac29c0512db.svg",
     "main.fb55119e.css.map": "/prosiapp/static/css/main.fb55119e.css.map",
-    "main.411ed7a5.js.map": "/prosiapp/static/js/main.411ed7a5.js.map",
+    "main.223684cd.js.map": "/prosiapp/static/js/main.223684cd.js.map",
     "787.af5c426f.chunk.js.map": "/prosiapp/static/js/787.af5c426f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.fb55119e.css",
-    "static/js/main.411ed7a5.js"
+    "static/js/main.223684cd.js"
   ]
 }
