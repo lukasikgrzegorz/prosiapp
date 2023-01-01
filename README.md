@@ -6,7 +6,7 @@
 #  ProsiAPP 
 
 Expense management web app, presenting current costs or revenues, assigning categories and reporting in a given date range. Based on redux, react and Firebase. Requires login. You can use test.<br>
-Mail: test@test.com<br>
+Email: test@test.com<br>
 Password: testtest<br>
 
 <br>
