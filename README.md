@@ -1,6 +1,6 @@
 
 <div align="center">
-<a href="https://lukasikgrzegorz.github.io/prosiapp/#/login" target="_blank"><img style="margin: 10px" src="https://lukasikgrzegorz.github.io/prosiapp/static/media/logo.1704b19af24129275fd269acbfe711b2.svg" alt="Logo" height="200" /></a>
+<a href="https://lukasikgrzegorz.github.io/prosiapp/#/login" target="_blank"><img style="margin: 10px" src="https://lukasikgrzegorz.github.io/prosiapp/static/media/logo.1704b19af24129275fd269acbfe711b2.svg" alt="Logo" height="210" /></a>
 </div>
 
 #  ProsiAPP 
